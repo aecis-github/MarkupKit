@@ -36,8 +36,8 @@ open class MarkupingViewController: UIViewController {
         return view.viewWithTag(99) as? PKCanvasView
     }
 
-    public var isReadyForDrawing: Bool { return toolPicker.isVisible }
-    
+    public var isReadyForDrawing: Bool = false
+
     fileprivate var toolPicker: PKToolPicker!
 
     /// for iPhone screen
@@ -165,6 +165,8 @@ open class MarkupingViewController: UIViewController {
         toolPicker.addObserver(canvasView)
         toolPicker.addObserver(self)
         updateLayout(for: toolPicker)
+
+        isReadyForDrawing = true
         canvasView.becomeFirstResponder()
 
         // Before iOS 14, add a button to toggle finger drawing.
@@ -256,13 +258,14 @@ open class MarkupingViewController: UIViewController {
     }
 
     public func enableMarkupTool(_ status: Bool) {
-        toolPicker.setVisible(status, forFirstResponder: canvasView)
-
         if status {
+            isReadyForDrawing = true
             canvasView.becomeFirstResponder()
         } else {
+            isReadyForDrawing = false
             canvasView.resignFirstResponder()
         }
+        toolPicker.setVisible(status, forFirstResponder: canvasView)
     }
 
     func canvasViewDidFinishRendering() {}
