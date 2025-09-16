@@ -255,6 +255,12 @@ open class MarkupingViewController: UIViewController {
 
     public func enableMarkupTool(_ status: Bool) {
         toolPicker.setVisible(status, forFirstResponder: canvasView)
+
+        if status {
+            canvasView.becomeFirstResponder()
+        } else {
+            canvasView.resignFirstResponder()
+        }
     }
 
     func canvasViewDidFinishRendering() {}
