@@ -36,7 +36,7 @@ open class MarkupingViewController: UIViewController {
         return view.viewWithTag(99) as? PKCanvasView
     }
 
-    var isReadyForDrawing: Bool { return canvasView.isFirstResponder }
+    public var isReadyForDrawing: Bool { return canvasView.isFirstResponder }
     
     fileprivate var toolPicker: PKToolPicker!
 
