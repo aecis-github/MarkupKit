@@ -315,7 +315,9 @@ extension MarkupingViewController: PKCanvasViewDelegate {
     }
 
     public func canvasViewDidFinishRendering(_ canvasView: PKCanvasView) {
-        canvasViewDidFinishRendering()
+        if canvasView.isFirstResponder {
+            canvasViewDidFinishRendering()
+        }
     }
 
     public func canvasViewDidEndUsingTool(_ canvasView: PKCanvasView) {
